@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-ax)2j3*r-qjp+7m!))hgufzr^*%z)h@fu8^mhfe1iimc*l5xvr
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.vercel.app', '.now.sh', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -91,9 +91,13 @@ ASGI_APPLICATION = 'fuze.asgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD':'aOABkPldVqPcLpysfKdunURncZxZxouh' ,
+        'HOST': 'junction.proxy.rlwy.net',
+        'PORT': '17377',
+    }
 }
 
 
