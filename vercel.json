@@ -27,9 +27,5 @@
             "src": "/(.*)",
             "dest": "fuze/wsgi.py"
         }
-    ],
-    "env": {
-        "DJANGO_SETTINGS_MODULE": "fuze.settings",
-        "PYTHONPATH": "/vercel/path0"
-    }
+    ]
 }
