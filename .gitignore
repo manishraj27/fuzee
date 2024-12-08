@@ -1,0 +1,74 @@
+# Python bytecode files
+*.pyc
+*.pyo
+__pycache__/
+
+# Virtual environment directories
+myenv/
+env/
+.venv/
+venv
+# Django migrations
+**/migrations/
+
+# SQLite database
+db.sqlite3
+
+# Django secret key
+secret.key
+
+# Media files (uploaded by users)
+media/
+
+# Froala editor files
+froala_editor/
+
+# PyCharm/VSCode project settings
+.vscode/
+.idea/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Coverage reports
+.coverage
+*.coveragerc
+
+# Test and build directories
+*.log
+*.pot
+*.mo
+*.bak
+
+# Dependency directories
+*.egg-info/
+.eggs/
+
+# Installed dependencies
+*.egg
+lib/
+lib64/
+dist/
+build/
+
+# Pipenv and Poetry lock files (if you're using them)
+Pipfile.lock
+poetry.lock
+
+# Other IDE files
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Files used by NLTK
+nltk_data/
+
+# Torch and Transformers models
+*.pt
+*.bin
+*.h5
+
+# Froala editor backup files
+froala-backup/

@@ -1,0 +1,211 @@
+/* General dark theme and layout */
+body.dark-theme {
+    background-color: #d8eaef;
+    color: #e0e0e0;
+    font-family: 'Arial', sans-serif;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    padding: 20px;
+    gap: 20px;
+}
+
+/* User Panel */
+.user-panel {
+    flex: 0 0 15%;
+    background-color: #80cae9d7;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(89, 178, 207, 0.533);
+}
+
+.user-panel h3 {
+    color: #0e0f0f;
+    border-bottom: 4px solid #00b3ff;
+    padding-bottom: 5px;
+}
+
+.user-panel ul {
+    list-style: none;
+    padding: 0;
+}
+
+.user-panel ul li {
+    margin: 10px 0;
+    padding: 5px;
+    background-color: #f9fafb;
+    border-radius: 4px;
+    color: black;
+}
+
+/* Middle: Collaborative Editor Space */
+.editor-space {
+    flex: 1;
+    background-color: #739fcf;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    border: 4px solid #121313;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    color: #121313;
+}
+
+.editor-placeholder {
+    color: #00b3ff;
+}
+
+
+/* Chat Panel */
+.chat-panel {
+    flex: 0 0 25%;
+    background-color: #80cae9d7;
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 10px rgba(148, 195, 229, 0.3);
+}
+
+#chat-messages {
+    height: 400px;
+    overflow-y: scroll;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #e9f0f4d7;
+    max-height: calc(100vh - 130px); /* Adjust to ensure space for other elements */
+}
+
+.message {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 8px;
+    max-width: 60%;
+    color: white;
+}
+
+.sent {
+    background-color:#00b3ff;  /* Blue color for sent messages */
+    margin-left: auto;
+    text-align: right;
+    border-radius: 8px 0 8px 8px;  /* Rounded corners */
+}
+
+.received {
+    background-color: #00b3ff;  /* Dark color for received messages */
+    margin-right: auto;
+    text-align: left;
+    border-radius: 0 8px 8px 8px;  /* Rounded corners */
+}
+
+
+form {
+    display: flex;
+    gap: 10px;
+}
+
+textarea {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #fefcfc;
+    color: white;
+    border: none;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #00b3ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #008cff;
+}
+
+/* Custom Scrollbar for WebKit Browsers (Chrome, Safari, Edge) */
+#chat-messages::-webkit-scrollbar {
+    width: 8px;  /* Thinner scrollbar width */
+}
+
+#chat-messages::-webkit-scrollbar-track {
+    background: #2e2e2e;  /* Dark background for the scrollbar track */
+}
+
+#chat-messages::-webkit-scrollbar-thumb {
+    background-color: #00b3ff;  /* Blue color for the scrollbar thumb */
+    border-radius: 4px;  /* Rounded edges of the scrollbar thumb */
+    border: 2px solid #2e2e2e;  /* Gives space around the scrollbar thumb */
+}
+
+/* Firefox Custom Scrollbar */
+#chat-messages {
+    scrollbar-width: thin;  /* Thin scrollbar */
+    scrollbar-color: #00b3ff,#fffefe;  /* Thumb color and track color */
+}
+
+/* Scrollbar hover effect */
+#chat-messages::-webkit-scrollbar-thumb:hover {
+    background-color: #005bb5;  /* Darker blue on hover */
+}
+
+/* Middle: Collaborative Editor Space */
+.editor-space {
+    flex: 1;
+    background-color:  #80cae9d7;
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: flex-start; /* Align items at the top */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    padding: 10px; /* Add padding for better spacing */
+}
+
+
+.editor-toolbar {
+    display: flex;
+    justify-content: space-between; /* Space between the toolbar and the PDF button */
+    align-items: center;
+    background-color: #191818; /* Background color of the toolbar */
+    padding: 5px 10px;
+    border-bottom: 1px solid #151414; /* Border separating toolbar from editor */
+    border-radius: 8px 8px 0 0; /* Rounded corners for the top */
+}
+
+.export-pdf-btn {
+    background-color: #00b3ff; /* Button background color */
+    color: white;
+    border: none;
+    padding: 8px 12px; /* Increase padding for better click area */
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease; /* Add transition for hover effect */
+}
+
+.export-pdf-btn:hover {
+    background-color: #0099cc; /* Change background on hover */
+}
+
+#editor-container {
+    flex: 1;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin-top: 10px;
+    border-radius: 0 0 8px 8px;
+    overflow-y: auto;  /* Content will scroll if it exceeds the height */
+    height: 400px;  /* Set a fixed height for the editor */
+}
+
+
+

@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About us</title>
+    {% load static%}
+    <link rel="stylesheet" href="{% static 'css/about.css' %}"> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+
+</head>
+<body>
+    <header >
+    <nav class="navbar">
+     <div class="nav-logo">
+     </nav> 
+     </header>    
+
+   <div class="container">
+    <section class="grid grid-cols">
+        <!--GRID ITEM-->
+        <div class="grid-item-1">
+            <div class="flex-item">
+                <img class="my-img" src="{% static 'images\pic1.png' %}">
+                <h1 class="desc">
+                    <i><span>Minds<br> 
+                        Grow and 
+                        </i></span>
+                </h1>
+
+                <img class="my-img" src="{% static 'images\pic3.png' %}">
+            </div>
+        </div>
+                  <!--GRID ITEM_2-->
+        <div class="grid-item-2">
+            <h1 class="desc">
+                <i>“Where<br> 
+                    ideas meet,</i>
+            </h1>
+            <img class="my-img" src="{% static 'images\pic2.png' %}">
+            <h1 class="desc">
+               <i> Success <br>
+                   follows."<i>
+            </h1>
+        </div>
+        </div>
+
+    </section>
+   </div>
+     <script>
+        gsap.from(".desc", {
+            opacity: 0,
+            y: 20,
+            delay: 1,
+            duration: 1,
+        });
+        
+        // ====  IMAGE ==== //
+        gsap.from(".my-img", {
+            opacity: 0,
+            y: 20,
+            delay:1.5,
+            duration: 1,
+        });
+    </script> 
+        
+        
+</body>
+</html>

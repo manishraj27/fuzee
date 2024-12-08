@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Fuze-A collaborative workspace</title>
+        <!-- ======= STYLE ====== -->
+         {% load static %}
+         <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <!-- ======= BOXICONS CDN ====== -->
+
+        <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.15.10/css/uikit.min.css">
+        <link
+            href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
+            rel="stylesheet"
+        />
+        <!-- ======= GSAP CDN ====== -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
+    </head>
+    <body>
+
+        <header class="header container">
+            <nav class="navbar">
+                <div class="logo">
+                    <h2 class="logo-name">
+                        F<span>uzee</span> 
+                    </h2>
+                </div>
+                <div class="nav_menu">
+                    <div class="close-nav">
+                        <button class="close_btn">&#10005;</button>
+                    </div>
+                    <ul class="nav-link-list">
+                        <li class="nav-link-list-item">
+                            <a class="nav-link active" href="#">Home</a>
+                        </li>
+                        <li class="nav-link-list-item">
+                            <a class="nav-link" href="{% url 'about' %}">About</a>
+                        </li>
+                        <li class="nav-link-list-item">
+                            <a class="nav-link" href="#">Features</a>
+                        </li>
+                        <li class="nav-link-list-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+                <button class="toggle_btn">
+                <i class="bx bx-menu"></i>
+                </button>
+            </nav>
+        </header>
+        <div class="container">
+            <section class="grid grid-cols-2">
+               <!-- ===== GRID-ITEM-1 ===== -->
+               <div class="grid-item-1">
+                  <div class="flex-item-1">
+                     <h1 class="product-tagline">
+                        <span>F</span>uzee
+                     </h1>
+                    
+                     <a href="{% url 'register' %}"class="cta-btn"><b>join us<b> </a>
+
+                  </div>
+                  
+               </div>
+               <!-- ===== GRID-ITEM-2 ===== -->
+                <div class="grid-item-2">
+                <h1 class="tagline">
+                   <i> "Link,<br><span> Learn,<br> and </span> Lead"</i>
+                 </h1>
+               </div> 
+               
+            </section>
+         </div>
+        <!-- ======= Script.js ====== -->
+        <script src="{% static 'js\scripts.js' %}"></script>
+    </body>
+    
+</html>

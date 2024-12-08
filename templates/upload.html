@@ -1,0 +1,44 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Post</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.15.10/css/uikit.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/froala-editor@4.0.15/css/froala_editor.pkgd.min.css" rel="stylesheet">
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f9f9f9; color: #333; margin: 0; padding: 0;">
+    <div class="upload-container" style="max-width: 600px; margin: 50px auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+        <h2 style="font-size: 1.8rem; margin-bottom: 20px; text-align: center; color: #4A90E2;">Create a Post</h2>
+        <form action="{% url 'upload' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div>
+                <label for="image_upload" style="display: block; margin-bottom: 5px;">Upload Pictures:</label>
+                <input type="file" name="image_upload" id="image_upload" accept="image/*" style="display: block; margin: 10px 0;">
+
+                <label for="content" style="display: block; margin-bottom: 5px;">Content:</label>
+                <textarea id="content" name="content" class="froala-editor" placeholder="Write your content here..." required style="box-shadow:none; width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px; resize: none; font-size: 1rem;"></textarea>
+
+                <label for="caption" style="display: block; margin-bottom: 5px;">Caption:</label>
+                <textarea id="caption" name="caption" placeholder="Write a caption..." style="width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px; resize: none; font-size: 1rem;"></textarea>
+
+                <button class="button" type="submit" style="display: block; width: 100%; background-color: #1E40AF; color: #fff; border: none; padding: 10px; border-radius: 5px; cursor: pointer; font-size: 1rem; text-align: center;">Upload</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.15.10/js/uikit.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.15.10/js/uikit-icons.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/froala-editor@4.0.15/js/froala_editor.pkgd.min.js"></script>
+    <script>
+        // Initialize Froala Editor
+        document.addEventListener('DOMContentLoaded', function () {
+            new FroalaEditor('#content', {
+                toolbarInline: false,
+                charCounterCount: true,
+                heightMin: 200,
+                heightMax: 400,
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,289 @@
+{
+    "intents": [
+    
+
+      {
+        "intent": "CreateRoom",
+        "examples": [
+          "I want to create a new room",
+          "How do I start a project room?",
+          "Set up a room for collaboration",
+          "Create a project space",
+          "Start a new room"
+        ],
+        "responses": [
+          "To create a room, navigate to the 'Create Room' section from the dashboard and fill in the project details.",
+          "You can create a room by clicking on 'Create Room' on the homepage and inviting team members."
+        ]
+      },
+      {
+        "intent": "PostDiscussion",
+        "examples": [
+          "How can I post a discussion?",
+          "I want to share my thoughts in the forum",
+          "Where can I add a post?",
+          "How do I create a post in the room?",
+          "Start a discussion in the forum"
+        ],
+        "responses": [
+          "To post a discussion, go to the 'Discussion Forum' in your room and click 'New Post' to share your thoughts.",
+          "Navigate to your project's discussion forum and click 'Add Post' to start a new discussion."
+        ]
+      },
+      {
+        "intent": "UploadFiles",
+        "examples": [
+          "How do I upload project files?",
+          "Where can I add resources?",
+          "Upload documents to the room",
+          "Share files with my team",
+          "Add project materials"
+        ],
+        "responses": [
+          "To upload files, click on the 'Files' tab in your project room and select 'Upload Files'.",
+          "Go to the 'Files' section of your room and drag-and-drop your documents or use the upload button."
+        ]
+      },
+      {
+        "intent": "TrackProgress",
+        "examples": [
+          "How do I track project progress?",
+          "Can I see completed tasks?",
+          "View project milestones",
+          "Track team progress",
+          "Where can I check task statuses?"
+        ],
+        "responses": [
+          "To track progress, use the 'Task Management' tab in your room to view tasks, milestones, and deadlines.",
+          "The 'Task Management' section in your project room provides a clear overview of ongoing and completed tasks."
+        ]
+      },
+      {
+        "intent": "RealTimeChat",
+        "examples": [
+          "How can I chat with my teammates?",
+          "Start a group chat in the room",
+          "Where is the chat feature?",
+          "Can I send real-time messages?",
+          "How do I message my group?"
+        ],
+        "responses": [
+          "You can use the 'Chat' feature in your project room for real-time communication with your teammates.",
+          "To chat with your team, open the room and click on the 'Chat' tab for instant messaging."
+        ]
+      },
+      {
+        "intent": "GetNotifications",
+        "examples": [
+          "Will I get updates on project changes?",
+          "How do notifications work?",
+          "Receive alerts for new posts",
+          "Can I get reminders for deadlines?",
+          "What happens if someone comments on my post?"
+        ],
+        "responses": [
+          "You will receive notifications for new posts, comments, and updates directly in the notification center.",
+          "Project milestones and comments will trigger alerts that you can view in your notifications tab."
+        ]
+      },
+      {
+        "intent": "ExportPDF",
+        "examples": [
+          "How do I download project content?",
+          "Can I export a report?",
+          "Save project discussions as PDF",
+          "Export the project to PDF",
+          "Download project milestones"
+        ],
+        "responses": [
+          "To export content, go to the 'Export' section in your project room and select 'Export as PDF'.",
+          "Click on 'Export PDF' in your room to download the project discussions, files, and milestones."
+        ]
+      },
+      {
+        "intent": "HelpNavigation",
+        "examples": [
+          "Where can I find the discussion forum?",
+          "Help me navigate the website",
+          "I need assistance with navigation",
+          "Where is the task management tab?",
+          "Guide me to the chat section"
+        ],
+        "responses": [
+          "The discussion forum, chat, and task management tabs are all located within each project room for easy access.",
+          "You can find all key sections like Chat, Files, and Discussion Forum directly in your project room menu."
+        ]
+      },
+          {
+            "intent": "greeting",
+            "examples": [
+              "Hi",
+              "Hello",
+              "Hey",
+              "Good morning",
+              "Good evening",
+              "What's up?",
+              "Howdy"
+            ],
+            "responses": [
+              "Hello! How can I assist you today?",
+              "Hi there! How can I help?",
+              "Greetings! How can I assist?",
+              "Hey! What's on your mind?"
+            ]
+          },
+          {
+            "intent": "how_are_you",
+            "examples": [
+              "How are you?",
+              "How are you doing?",
+              "What's up?",
+              "How’s everything going?",
+              "You okay?"
+            ],
+            "responses": [
+              "I'm just a bot, but I'm doing great! How about you?",
+              "Feeling fantastic, thanks for asking! How can I help you?",
+              "All systems are running smoothly. What about you?"
+            ]
+          },
+          {
+            "intent": "thank_you",
+            "examples": [
+              "Thank you",
+              "Thanks a lot",
+              "I appreciate it",
+              "Thanks",
+              "Thank you so much"
+            ],
+            "responses": [
+              "You're welcome!",
+              "Glad I could help!",
+              "Anytime! Let me know if you need anything else."
+            ]
+          },
+          {
+            "intent": "goodbye",
+            "examples": [
+              "Goodbye",
+              "Bye",
+              "See you later",
+              "Talk to you soon",
+              "Catch you later"
+            ],
+            "responses": [
+              "Goodbye! Have a great day!",
+              "Bye! Take care!",
+              "See you later! Don't hesitate to reach out if you need help again."
+            ]
+          },
+          {
+            "intent": "small_talk",
+            "examples": [
+              "What's your favorite color?",
+              "Do you like music?",
+              "What do you do for fun?",
+              "Tell me something interesting",
+              "Do you have hobbies?"
+            ],
+            "responses": [
+              "I'm a bot, so I don't have hobbies, but I love helping people like you!",
+              "I can't listen to music, but I hear humans love it!",
+              "Fun for me is making your tasks easier. What about you?"
+            ]
+          },
+          {
+            "intent": "weather",
+            "examples": [
+              "What's the weather like?",
+              "Is it sunny today?",
+              "Will it rain tomorrow?",
+              "Tell me about the weather",
+              "What's the forecast?"
+            ],
+            "responses": [
+              "I can't check the weather right now, but you can ask your favorite weather app!",
+              "It’s always sunny in the world of code! How about you?",
+              "I recommend looking up your local forecast for the latest updates."
+            ]
+          },
+          {
+            "intent": "time",
+            "examples": [
+              "What time is it?",
+              "Do you know the time?",
+              "Tell me the current time",
+              "What's the time now?",
+              "Can you tell me the time?"
+            ],
+            "responses": [
+              "I can't tell the time, but your device's clock should have you covered!",
+              "It's always a good time to chat with me!",
+              "Check your local clock for the exact time."
+            ]
+          },
+          {
+            "intent": "jokes",
+            "examples": [
+              "Tell me a joke",
+              "Make me laugh",
+              "Do you know any jokes?",
+              "Say something funny",
+              "Lighten the mood"
+            ],
+            "responses": [
+              "Why don’t programmers like nature? It has too many bugs.",
+              "Why do we never tell secrets on farms? Because the potatoes have eyes and the corn has ears!",
+              "Why did the computer go to the therapist? It had a hard drive!"
+            ]
+          },
+          {
+            "intent": "motivation",
+            "examples": [
+              "Give me some motivation",
+              "I need encouragement",
+              "Can you inspire me?",
+              "Say something motivational",
+              "Lift my spirits"
+            ],
+            "responses": [
+              "Believe in yourself! You’re capable of amazing things.",
+              "Every great achievement was once considered impossible. Keep going!",
+              "The journey of a thousand miles begins with a single step."
+            ]
+          },
+          {
+            "intent": "favorites",
+            "examples": [
+              "What's your favorite movie?",
+              "Do you have a favorite book?",
+              "What food do you like?",
+              "What's your favorite thing to do?",
+              "Tell me about your favorites"
+            ],
+            "responses": [
+              "I'm just a bot, but I hear humans love movies like *Inception* and books like *1984*.",
+              "I don’t eat, but I think pizza is a popular choice among humans!",
+              "My favorite thing is helping you. What about you?"
+            ]
+          },
+          {
+            "intent": "current_events",
+            "examples": [
+              "What's going on in the world?",
+              "Tell me about the news",
+              "What's trending?",
+              "What's happening today?",
+              "Any updates on current events?"
+            ],
+            "responses": [
+              "I’m not connected to the news right now, but you can check a reliable news app for updates!",
+              "Lots of things are happening, but I’d recommend checking out a news source for accurate information.",
+              "I might not have the latest updates, but I can always chat about what’s on your mind!"
+            ]
+          }
+        ]
+      }
+      
+    
+  

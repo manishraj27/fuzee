@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fuze-Homepage</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+    <!-- iconscoutCdn -->
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.16.3/dist/css/uikit.min.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <link href="https://cdn.jsdelivr.net/npm/froala-editor@4.0.15/css/froala_editor.pkgd.min.css" rel="stylesheet">
+    
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <h2 class="log">
+                Fuze
+            </h2>
+            <form action="/search" method="POST">
+                {% csrf_token %}
+            <div class="search-bar">
+                <i class="uil uil-search"></i>
+                <input type="search" name="username" class="search-text" placeholder="search for users, rooms, and projects">
+            </div>
+            </form>
+            <div class="create">
+                <a href="{% url 'home' %}">
+                <button class="btn"type="submit">Logout</button>
+                </a>
+                <div class="Profile-photo">
+                    <img src="{{user_profile.profileimg.url}}"alt="Profile Picture">
+                </div>
+            </div>
+        </div>
+    </nav>
+     
+    
+
+    <main>
+        <div class="container">
+           
+            <div class="left">
+                    <a class="Profile">
+                        <div class="Profile-photo">
+                            <img src="{{user_profile.profileimg.url}}" alt="Profile Picture">
+                        </div>
+                        <div class="handle">
+                            <p class="text-muted" style ="color: #3b3a30;">{{user_profile.user}}</p>
+                        </div>
+                    </a>
+                
+       
+                <div class="sidebar">
+                    <a class="menu-item " href="{% url 'home' %}" >
+                    <span><i class="uil uil-house-user"></i></span><h3>Home</h3>
+                    </a>
+                    <a class="menu-item" href="{% url 'room' %}">
+                    <span><i class="uil uil-users-alt"></i></span><h3>Room</h3>
+                    </a>
+                    <a class="menu-item" href="{% url 'chat' %}">
+                    <span><i class="uil uil-comment-question"></i></span><h3>Ask me??</h3>
+                    </a>
+                    <a class="menu-item" href="{% url 'setting' %}">
+                    <span><i class="uil uil-sliders-v-alt"></i></span><h3>Settings</h3>
+                    </a>
+                </div>
+            
+
+<!--UPLOAD PICS#############################################################################-->
+<!--UPLOAD PICS#############################################################################-->
+
+                <div class="create">
+                            
+                    <a href="{% url 'upload' %}">
+                        <button class="btn btn-primary" type="button">Create Post</button>
+                    </a>
+                     <div>                    
+{% comment %}                     
+                    <form action="{% url 'upload' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div>
+                        <p class="my-3 leading-6">Upload pics
+                            <input type="file" name="image_upload" accept="image/*">
+                        </p>
+                        
+                        <div class="uk-grid-small" uk-grid>
+                            <div class="uk-width-expand">
+                                <textarea id="content" name="content" class="uk-input uk-form-small bg-gray-200 froala-editor" style="box-shadow:none" placeholder="Write your content here..." required></textarea>
+
+                            </div>
+                            
+                        </div>
+
+                        <br>
+                        <textarea class="button soft-warning small" name="caption" placeholder="caption..."></textarea>
+                        <br>
+                        <button class="button bg-blue-700" type="submit">Upload</button>
+                    </div>
+                    </form>  {% endcomment %}
+                </div>
+            </div>
+        </div>
+            
+           <!-- Middle Section -->
+           <div class="middle">
+             <!-- Create Post Form -->
+               <form class="create-post" method="#" action="#">
+                  
+                    <div class="Profile-photo">
+                    <img src="{{user_profile.profileimg.url}}" alt="Profile Picture">
+                    </div>
+                    <input type="text" placeholder="What's on your mind?" id="create-post">
+                    <input type="submit" value="Post" class="btn btn-primary">
+                </form>
+
+                <div class="feeds">
+                    <!-- First Feed -->
+                    {% for post in posts reversed %}
+                    <div class="feed">
+                        <!-- Post Header -->
+                        <div class="head" style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background-color: #ffffff; border: 1px solid #e0e0e0; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); margin-bottom: 20px;">
+                            <div class="user" style="display: flex; align-items: center;">
+                                <div class="info">
+                                    <h3 style="margin: 0; font-size: 1.2rem; color: #00000;"> 
+                                        <a href="/profile/{{post.user}}">{{post.user}}</a>
+                                    </h3>
+                                    <middle style="display: block; font-size: 0.9rem; color: #666; margin-top: 5px;">
+                                        <i class="fa-solid fa-location-dot" style="color: #888; margin-right: 5px;"></i> 
+                                        <b>{{ user_profile.location }}</b>
+                                    </middle>
+                                </div>
+                            </div>
+                            <span class="edit" id="three-dots-{{ post.id }}" style="cursor: pointer; font-size: 1.5rem; color: #888;" onclick="toggleDeleteButton('{{ post.id }}')">
+                                <i class="uil uil-ellipsis-h"></i> <!-- Three dots icon -->
+                            </span>
+                            <!-- Hidden Delete button, will be shown when "three dots" clicked -->
+                            <div id="delete-button-{{ post.id }}" style="display: none; margin-top: 10px;">
+                                <form action="{% url 'delete_post' post.id %}" method="POST" style="display:inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                
+                        <!-- Post Content (Photo, Caption) -->
+                        <div class="photo">
+                            <p>{{ post.caption }}</p>
+                            {% if post.image %}
+                                <img src="{{ post.image.url }}" alt="Post Image">
+                            {% endif %}
+                        </div>
+                        
+                        <!-- Interaction Buttons -->
+                        <div class="interaction-buttons" style="display: flex; gap: 15px; width: 100%; margin-bottom: 10px;">
+                            <a href="/like-post?post_id={{ post.id }}" style="cursor: pointer; font-size: 16px; display: flex; align-items: center; gap: 5px; text-decoration: none;color: #3b3a30;">
+                                <i class="uil uil-heart" style="font-size: 24px; color: #e74c3c;"></i> Like
+                            </a>
+                            <!-- Trigger to show comment form -->
+                            <span style="cursor: pointer; font-size: 16px; display: flex; align-items: center; gap: 5px;" onclick="toggleCommentForm('{{ post.id }}')">
+                                <i class="uil uil-comment-alt" style="font-size: 24px; color: #3498db;"></i> Comment
+                            </span>
+                            <span style="cursor: pointer; font-size: 16px; display: flex; align-items: center; gap: 5px;">
+                                <i class="uil uil-share" style="font-size: 24px; color: #2ecc71;"></i> Share
+                            </span>
+                        </div>
+                
+                        <!-- Liked By Section -->
+                        <div class="liked-by" style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; width: 100%;">
+                            {% if post.no_of_likes == 0 %}
+                                <p>No likes</p>
+                            {% elif post.no_of_likes == 1 %}
+                                <p>Liked by <b>{{ post.no_of_likes }}</b> person</p>
+                            {% else %}
+                                <p>Liked by <b>{{ post.no_of_likes }}</b> people</p>
+                            {% endif %}
+                        </div>
+                
+                        <!-- Hidden Add Comment Form -->
+                        <div id="comment-form-{{ post.id }}" style="display: none;">
+                            <form method="POST" action="{% url 'add-comment' pk=post.id %}">
+                                {% csrf_token %}
+                                <textarea name="content" placeholder="Write your comment..." required></textarea>
+                                <button onclick="toggleCommentForm('{{ post.id }}')">Add Comment</button>
+                            </form>
+                        </div>
+                
+                        <!-- Comments Section -->
+                        <div id="comments-section-{{ post.id }}" class="comments" style="width: 100%; margin-bottom: 10px;">
+                            <span style="font-size: 14px; color: #888; cursor: pointer;" onclick="toggleAllComments('{{ post.id }}')">
+                                View all {{ post.comments.count }} comments
+                            </span>
+                            <div class="comments-list">
+                                {% for comment in post.comments.all %}
+                                    <div class="comment" id="comment-{{ comment.id }}">
+                                        <p><strong>{{ comment.user }}:</strong> {{ comment.content }}</p>
+                                        <span onclick="showDeletePopup('{{ comment.id }}')" style="color: red; cursor: pointer;">Delete</span>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                
+                    </div> <!-- Close .feed -->
+                    {% endfor %}
+                </div> <!-- Close .feeds -->
+                
+            </div>
+
+
+                <div class="right">
+            
+         
+                    <div class="friend-request">
+                        <h4>You Might Know !!</h4>
+                        {% for suggestion in suggestions_username_profile_list %}
+                        <div class="request">
+                            <div class="info">
+                                <div class="Profile-photo">
+                                    <a href="/profile/{{suggestion.user}}">
+                                    <img src="{{suggestion.profileimg.url}}"></a>
+                                </div>
+                                    <span class="block capitalize font-semibold"> {{suggestion.user}} </span>
+                                    <span class="block capitalize text-sm"> {{suggestion.bio}} </span>
+                            </div>
+                        </div>
+                        {% endfor %}  
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/froala-editor@4.0.15/js/froala_editor.pkgd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.16.3/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.16.3/dist/js/uikit-icons.min.js"></script>
+    <script>
+        // Trigger the hidden file input for images
+        document.getElementById('upload-image').addEventListener('click', function (e) {
+            e.stopPropagation(); // Prevent dropdown from closing
+        });
+    
+        // Trigger the hidden file input for videos
+        document.getElementById('upload-video').addEventListener('click', function (e) {
+            e.stopPropagation(); // Prevent dropdown from closing
+        });
+    </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const editor = new FroalaEditor('.froala-editor', {
+            // Optional Froala configuration
+            toolbarInline: false,
+            charCounterCount: true,
+            heightMin: 200,
+            heightMax: 400,
+        });
+    
+        
+        const form = document.querySelector('form');
+        form.addEventListener('submit', function () {
+            // Get the Froala editor content and update the textarea
+            const content = editor.html.get();
+            document.querySelector('textarea[name="content"]').value = content;
+        });
+    });
+</script> 
+<script>
+function toggleDeleteButton(postId) {
+    // Get the delete button container by its ID
+    const threeDots = document.getElementById(`three-dots-${postId}`);
+    const deleteButtonDiv = document.getElementById(`delete-button-${postId}`);
+    
+    if (threeDots && deleteButtonDiv) {
+        if (threeDots.style.display !== "none") {
+            // Hide the three dots and show the delete button
+            threeDots.style.display = "none";
+            deleteButtonDiv.style.display = "block";
+        } else {
+            // Show the three dots and hide the delete button
+            threeDots.style.display = "inline";
+            deleteButtonDiv.style.display = "none";
+        }
+    } else {
+        console.error(`Elements for post ID ${postId} not found.`);
+    }
+}
+</script>
+
+
+
+<script>
+
+// Toggle visibility of the Add Comment form
+function toggleCommentForm(postId) {
+    const formElement = document.getElementById(`comment-form-${postId}`);
+    if (formElement.style.display === "none" || formElement.style.display === "") {
+        formElement.style.display = "block";
+    } else {
+        formElement.style.display = "none";
+    }
+}
+
+// Toggle visibility of all comments
+function toggleAllComments(postId) {
+    const commentsSection = document.getElementById(`comments-section-${postId}`);
+    const commentsList = commentsSection.querySelector('.comments-list');
+    if (commentsList.style.display === "none" || commentsList.style.display === "") {
+        commentsList.style.display = "block";
+    } else {
+        commentsList.style.display = "none";
+    }
+}
+
+// Show delete popup for a specific comment
+function showDeletePopup(commentId) {
+    const deletePopup = document.getElementById('delete-popup');
+    deletePopup.style.display = "flex";
+
+    // Set the form action dynamically for the selected comment
+    const form = deletePopup.querySelector('form');
+    form.action = `/delete-comment/${commentId}/`; // Update the endpoint according to your URL configuration
+}
+
+// Close the delete popup
+function closeDeletePopup() {
+    const deletePopup = document.getElementById('delete-popup');
+    deletePopup.style.display = "none";
+}
+</script>
+   
+    
+</body>
+</html>

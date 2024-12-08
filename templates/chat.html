@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ bot_name }} Chat</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/chat.css' %}">
+</head>
+<body>
+
+<section>
+    <div class="container py-5">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-8 col-lg-6 col-xl-4">
+                <div class="card" id="chat1" style="border-radius: 15px;">
+                    <div class="card-header d-flex justify-content-between align-items-center p-3 bg-info text-white border-bottom-0" style="border-top-left-radius: 15px; border-top-right-radius: 15px;">
+                        <i class="fas fa-angle-left"></i>
+                        <p class="mb-0 fw-bold">Hello Human !!</p>
+                        <i class="fas fa-times"></i>
+                    </div>
+                    <div class="card-body" id="chat-container">
+                        <div id="messages"></div>
+
+                        <!-- User input and Send button -->
+                        <div class="d-flex justify-content-between">
+                            <textarea class="form-control" id="user-input" placeholder="Type your message..." rows="3"></textarea>
+                            <button id="send-btn" class="btn btn-info">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    $(document).ready(function() {
+        $('#send-btn').click(function() {
+            let userMessage = $('#user-input').val();
+            if(userMessage.trim() === "") return;
+
+            // Append user message to chat window
+            $('#messages').append('<div class="d-flex flex-row justify-content-start mb-4"><img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp" alt="avatar 1" style="width: 45px; height: 100%;"> <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);"><p class="small mb-0">You: ' + userMessage + '</p></div></div>');
+
+            // Send message to Django backend
+            $.ajax({
+                url: '',
+                method: 'POST',
+                data: {
+                    'user_message': userMessage,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+                },
+                success: function(response) {
+                    $('#messages').append('<div class="d-flex flex-row justify-content-end mb-4"><div class="p-3 me-3 border bg-body-tertiary" style="border-radius: 15px;"><p class="small mb-0">{{ bot_name }}: ' + response.response + '</p></div><img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp" alt="avatar 1" style="width: 45px; height: 100%;"></div>');
+                    $('#user-input').val("");  // Clear input field
+                    $('#messages').scrollTop($('#messages')[0].scrollHeight);  // Scroll to the bottom
+                }
+            });
+        });
+
+        // Optional: Handle pressing enter for sending message
+        $('#user-input').keypress(function(e) {
+            if(e.which == 13) {
+                $('#send-btn').click();
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

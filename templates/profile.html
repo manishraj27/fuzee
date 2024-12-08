@@ -1,0 +1,127 @@
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Profile Page</title>
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    />
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}" />
+  </head>
+  <body>
+    <div class="header__wrapper">
+      <header></header>
+      <div class="cols__container">
+        <div class="left__col">
+          <div class="img__container">
+            <img src="{{ user_profile.profileimg.url }}" alt="{{ user_profile.user.username }}" />
+            <span></span>
+          </div>
+          <h2>{{ user_profile.user.username }}</h2>
+          <p>{{ user_profile.bio }}</p>
+          <p>{{ user_profile.user.email }}</p>
+
+          <ul class="about">
+            <li>
+              <span>{{ user_followers }}</span>
+              {{ user_followers|pluralize:"follower,followers" }}
+            </li>
+            <li><span>{{ user_following }}</span> Following</li>
+
+            {% if user_post_length == 1 %}
+            <li><span>{{user_post_length }}</span> Post</li>
+            {% else %}
+            <li><span>{{user_post_length }}</span> Posts</li>
+            {% endif %}
+          </ul>
+
+          <div class="content">
+            <p>
+              Welcome to {{ user_profile.user.username }}'s profile! Check out the latest posts and
+              follow to stay updated.
+            </p>
+          </div>
+        </div>
+        <div class="right__col">
+          <nav>
+            <ul>
+              <li><a href="javascript:void(0);" onclick="showSection('photos')">Photos</a></li>
+              <li><a href="javascript:void(0);" onclick="showSection('rooms')">Rooms</a></li>
+              <li><a href="#">About</a></li>
+            </ul>
+            <form action="/follow" method="POST">
+              {% csrf_token %}
+              <input type="hidden" value="{{ user.username }}" name="follower" />
+              <input type="hidden" value="{{ user_profile.user.username }}" name="user" />
+              {% if user.username == user_profile.user.username %}
+                <a href="{% url 'setting' %}" class="btn">Account Settings</a>
+              {% else %}
+                <button type="submit" class="btn">{{ button_text }}</button>
+              {% endif %}
+            </form>
+      
+          </nav>
+
+          <!-- Photos Section -->
+          <div id="photos" style="display: block;">
+            <div class="photos">
+              {% if user_posts %}
+                {% for post in user_posts %}
+                  <li>
+                    <a
+                      class="strip"
+                      href="{{ post.image.url }}"
+                      title="Post by {{ user_profile.user.username }}"
+                      data-strip-group="mygroup"
+                      data-strip-group-options="loop: false"
+                    >
+                      <img src="{{ post.image.url }}" alt="Post Image" style="height: 250px; width: 300px;" />
+                    </a>
+                  </li>
+                {% endfor %}
+              {% else %}
+                <p>No posts available</p>
+              {% endif %}
+            </div>
+          </div>
+
+          <!-- Rooms Section -->
+          <div id="rooms" style="display: none; margin-top: 10px;">
+            {% if user_rooms_count > 0 %}
+                <ul>
+                    {% for room_user in user_rooms %}
+                        <li>
+                            <a href="{% url 'user_dashboard' room_user.room.id %}">{{ room_user.room.name }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No rooms to display.</p>
+            {% endif %}
+          </div>
+
+        </div>
+      </div>
+
+      
+    </div>
+
+    <script>
+      function showSection(section) {
+          // Hide all sections
+          const sections = ['photos', 'rooms'];
+          sections.forEach(function(s) {
+              document.getElementById(s).style.display = 'none';
+          });
+          
+          // Show the selected section
+          document.getElementById(section).style.display = 'block';
+      }
+    </script>
+  </body>
+</html>
